@@ -121,6 +121,19 @@ app.get("/reset", (req, res) => {
         }
         console.log(result);
         res.send(result);
+        sympA=false;
+        sympB=false;
+        sympC=false;
+        sympD=false;
+        sympE=false;
+        sympF=false;
+        sympG=false;
+        sympH=false;
+        sympI=false;
+        sympJ=false;
+        sympK=false;
+        sympL=false;
+        sympM=false;
     });  
 });
 
