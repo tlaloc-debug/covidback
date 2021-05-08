@@ -3,6 +3,7 @@ const { parse } = require('pg-connection-string')
 const express = require("express");
 const cors = require("cors");
 const bodyparser = require("body-parser");
+var nodemailer = require('nodemailer');
 const connectionString = process.env.DATABASE_URL;
 const config = parse(connectionString)
 const app=express();
@@ -136,6 +137,34 @@ app.get("/reset", (req, res) => {
         sympM=false;
     });  
 });
+
+app.post("/sendemail", (req,res) => {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+    
+        auth: {
+          user: "tlalocvideos@gmail.com",
+          pass: "veinteAbril1989"
+        }
+      });
+      
+      var mailOptions = {
+        from: "tlalocvideos@gmail.com",
+        to: "pelondinho@hotmail.com",
+        subject: 'Sending Email using Node.js',
+        text: `sending mail using Node.js was running successfully. Hope it help you. For more code and project Please Refer my github page`
+        // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'        
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log("fail");
+        } 
+        else{
+          console.log("succes");
+        }
+      });
+    
+})
 
 app.listen(process.env.PORT, () => {
     console.log("running")
